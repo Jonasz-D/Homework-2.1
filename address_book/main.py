@@ -11,7 +11,6 @@ LOGO = """
 
                                                                                    by Syntax Conquerors
 """
-os.chdir(r'C:\Users\jp120\Desktop\Projects-Git\module_2\Homework-2.1\address_book')
 
 def main():
     print(LOGO)
