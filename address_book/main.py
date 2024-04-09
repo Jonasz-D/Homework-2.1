@@ -1,5 +1,4 @@
 from files_utilities import *
-import os
 from handler import facade_handler, end_program
 
 LOGO = """
