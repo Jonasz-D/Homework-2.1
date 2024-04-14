@@ -6,43 +6,47 @@ class FacadeHandler:
 
     def function_runner(self, command):
         if command == 'help':
-            return accepted_commands(self.commands)
+            return self.commands[command](self.commands)
         elif command in self.commands:
             return self.commands[command]  
         else:
+            unknown_command = UnknownCommand().function_logic()
             return unknown_command
+        
+def my_func(creator:FunctionsPattern):
+    func = creator.function_logic
+    return func
 
 def input_parser():
     """Functions runs in a while loop, takes input from user and returns apropiate functions
     """
     commands = {
-    'add contact': add_contact,
-    'delete contact': delete_contact,
-    'add phone': add_phone,
-    'change phone': change_phone_num,
-    'delete phone': delete_phone,
-    'add email': add_email,
-    'change email': change_email,
-    'delete email': delete_email,
-    'add birthday' : set_birthday,
-    'birthday': days_to_birthday,
-    'add address': add_address,
-    'change address': change_address,
-    'delete address': delete_address,
-    'add note': add_note,
-    'edit note': edit_note,
-    'delete note': remove_note,
-    'show notes':show_notes,
-    'find note': search_note_by_tags,
-    'show all': show_all,
-    'find contact' : find_contact,
-    'sort folder': sort_folder,
-    'save': save_to_file,
-    'exit': end_program,
-    'help': accepted_commands, 
+    'add contact': my_func(AddContact()),
+    'delete contact': my_func(DeleteContact()),
+    'add phone': my_func(AddPhone()),
+    'change phone': my_func(ChangePhoneNum()),
+    'delete phone': my_func(DeletePhone()),
+    'add email': my_func(AddEmail()),
+    'change email': my_func(ChangeEmail()),
+    'delete email': my_func(DeleteEmail()),
+    'add birthday' : my_func(SetBirthday()),
+    'birthday': my_func(DaysToBirthday()),
+    'add address': my_func(AddAddress()),
+    'change address': my_func(ChangeAddress()),
+    'delete address': my_func(DeleteAddress()),
+    'add note': my_func(AddNote()),
+    'edit note': my_func(EditNote()),
+    'delete note': my_func(RemoveNote()),
+    'show notes':my_func(ShowNotes()),
+    'find note': my_func(SearchNoteByTags()),
+    'show all': my_func(ShowAll()),
+    'find contact' : my_func(FindContact()),
+    'sort folder': my_func(SortFolder()),
+    'save': my_func(SaveToFile()),
+    'exit': my_func(EndProgram()),
+    'help': my_func(AcceptedCommands()), 
     }
     return commands
 
-
 facade_handler = FacadeHandler(input_parser())
-        
+      

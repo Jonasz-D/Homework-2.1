@@ -63,33 +63,30 @@ class Notebook(UserDict):
         else:
             return finded_notes
     
-    def edit_note(self, num_of_note):
+    def edit_note(self, num_of_note, note, tags):
         if num_of_note not in str(self.data.keys()):
-            print('Number of note doesn\'t exists')
-            return False
+            return ('Number of note doesn\'t exists')
         else:
             try:
-                note = input('Enter new note text: ')
-                tags = input("Enter new tags: ")
                 self.data[int(num_of_note)] = [Note(note).internal_value, Tags(tags).internal_value]
-                return True
+                return 'Note has been changed'
             
             except ValueError as e:
-                print(e)
-                return False
+                return e
+
             
     def remove_note(self, num_of_note):
         if num_of_note == 'all':
             Notebook.num_of_notes = 0
             self.data.clear()
-            return True
+            return 'Note(s) has been removed'
     
         elif num_of_note not in str(self.data.keys()):
-            print('Number of note doesn\'t exists')
-            return False
+            return 'Number of note doesn\'t exists'
+
         else:
             self.data.pop(int(num_of_note))
-            return True
+            return 'Note(s) has been removed'
 
     def remove_all_notes(self):
         self.note = ''

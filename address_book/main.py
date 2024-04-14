@@ -1,5 +1,5 @@
 from files_utilities import *
-from handler import facade_handler, end_program
+from handler import facade_handler
 
 LOGO = """
 @@@ @@@ @@@  @@@ @@@ @@@  @@@ @@@ @@@  @@@  @@@ @@@ @@@  @@@ @@@ @@@  @@@ @@@ @@@  @@@     @@@  @@@ @@@ @@@ 
@@ -18,8 +18,8 @@ def main():
         command = input('\nEnter your command: ').lower()
         function_to_execute = facade_handler.function_runner(command)
         try:
-            if function_to_execute == end_program:
-                end_program()
+            if command == 'exit':
+                function_to_execute()
                 break
             else:
                 function_to_execute()
