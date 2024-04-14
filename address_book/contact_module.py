@@ -63,8 +63,7 @@ class Phone(Field):
         if number:
             number = number.strip()
             if not number.isdigit() or len(number) != 9:
-                print("Number must be 9 digits long and contain digits only.")
-                raise ValueError
+                return ("Number must be 9 digits long and contain digits only.")
             self.internal_value = number[0:3]+'-'+number[3:6]+'-'+number[6:]
 
 class Address(Field):
@@ -84,8 +83,7 @@ class Email(Field):
             patern_email = r"^([A-Za-z0-9]+ |[A-Za-z0-9][A-Za-z0-9\.\_]+[A-Za-z0-9])@([A-Za-z0-9]+|[A-Za-z0-9\_\-]+[A-Za-z0-9])\.([a-z]{,3}|[a-z]{3}\.[a-z]{2})$"
             result = re.findall(patern_email,email)
             if result == []:
-                print('Wrong email format!')
-                raise ValueError
+                raise ValueError('Wrong email format!')
         self.internal_value = email
 
 class Birthday(Field):

@@ -1,5 +1,6 @@
 from files_utilities import *
 from handler import facade_handler
+from functions import send_msg, input_value
 
 LOGO = """
 @@@ @@@ @@@  @@@ @@@ @@@  @@@ @@@ @@@  @@@  @@@ @@@ @@@  @@@ @@@ @@@  @@@ @@@ @@@  @@@     @@@  @@@ @@@ @@@ 
@@ -12,10 +13,13 @@ LOGO = """
 """
 
 def main():
-    print(LOGO)
-    print('Type "help" to get a command list.')
+    msg = LOGO
+    send_msg(msg)
+    msg = 'Type "help" to get a command list.'
+    send_msg(msg)
     while True:
-        command = input('\nEnter your command: ').lower()
+        msg = '\nEnter your command: '
+        command = input_value(msg)
         function_to_execute = facade_handler.function_runner(command)
         try:
             if command == 'exit':

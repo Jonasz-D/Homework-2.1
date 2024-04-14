@@ -57,10 +57,12 @@ class AddPhone(FunctionsPattern):
         if not name in address_book.contacts:
             msg = f'There is no contact {name}'
             send_msg(msg)
+            return
             
         if address_book.contacts[name].phone.value:
             msg = f'Contact have a phone number already. To change an existing number use "change phone" command.'
             send_msg(msg)
+            return
 
         msg = "Enter phone number: "
         phone = input_value(msg)            
@@ -70,7 +72,7 @@ class AddPhone(FunctionsPattern):
                 msg = f"{phone} was added to contact {name}."
                 send_msg(msg)
         except:
-            return
+            return 
 
 class ChangePhoneNum(FunctionsPattern):
     def function_logic(self):   
@@ -355,7 +357,7 @@ class RemoveNote(FunctionsPattern):
             num_of_note = input_value(msg)
             msg = address_book.notebook.remove_note(num_of_note)
             send_msg(msg)
-            
+
 class ShowNotes(FunctionsPattern):
     def function_logic(self): 
         msg = f'List of notes: \n {address_book.notebook.show_notes()}'
